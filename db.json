@@ -1,0 +1,18 @@
+{
+  "articles": [
+    {
+      "id": "1",
+      "title": "React Hooksの完全理解",
+      "content": "## useStateとは\nuseStateは状態を管理するためのフックです。",
+      "author": "Tech Taro",
+      "createdAt": "2026-05-14"
+    },
+    {
+      "id": "2",
+      "title": "JavaScriptの基礎",
+      "content": "## JavaScriptとは\nWebページに動きをつけるためのプログラミング言語です。",
+      "author": "Tech Taro",
+      "createdAt": "2026-05-15"
+    }
+  ]
+}
