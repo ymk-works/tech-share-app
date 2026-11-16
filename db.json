@@ -1,17 +1,18 @@
+
 {
   "articles": [
     {
       "id": "1",
       "title": "React Hooksの完全理解",
-      "content": "## useStateとは\nuseStateは状態を管理するためのフックです。",
+      "content": "## useStateとは\nuseStateは状態を管理するためのフックです。\n\n## useEffectとは\nuseEffectは副作用を扱うためのフックです。\n\n### 主なフック\n- useState：状態の管理\n- useEffect：副作用の処理\n\nreactの学習に役立ちます。",
       "author": "Tech Taro",
       "createdAt": "2026-05-14"
     },
     {
       "id": "2",
-      "title": "JavaScriptの基礎",
-      "content": "## JavaScriptとは\nWebページに動きをつけるためのプログラミング言語です。",
-      "author": "Tech Taro",
+      "title": "Tailwind CSSで爆速コーディング",
+      "content": "## Tailwind CSSとは\nCSSのユーティリティクラスを組み合わせて画面のデザインを作る方法です。",
+      "author": "Front Engineer",
       "createdAt": "2026-05-15"
     }
   ]
