@@ -1,8 +1,10 @@
-
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { useAuth } from "../contexts/AuthContext";
+
+// 環境変数からAPIの接続先URLを取得
+const API_URL = import.meta.env.VITE_API_URL;
 
 // 記事詳細ページ
 export default function Article() {
@@ -30,7 +32,8 @@ export default function Article() {
     setError("");
     setArticle(null);
 
-    fetch(`http://localhost:3000/articles/${id}`)
+    // 環境変数で指定されたAPIから記事を取得する
+    fetch(`${API_URL}/articles/${id}`)
 
       // サーバーからの応答をチェックしてJSONに変換
       .then((res) => {
@@ -61,9 +64,9 @@ export default function Article() {
     if (!window.confirm("この記事を削除しますか？")) return;
 
     try {
-      // DELETEメソッドで記事を削除する
+      // 環境変数で指定されたAPIにDELETEリクエストを送る
       const res = await fetch(
-        `http://localhost:3000/articles/${id}`,
+        `${API_URL}/articles/${id}`,
         { method: "DELETE" }
       );
 

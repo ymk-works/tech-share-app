@@ -4,6 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { useAuth } from "../contexts/AuthContext";
 
+// 環境変数からAPIの接続先URLを取得
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function Editor() {
   // ========================================
   // ① 作成モード・編集モードの判定
@@ -62,7 +65,8 @@ export default function Editor() {
     }
 
     // 編集モードの場合だけ既存記事を取得する
-    fetch(`http://localhost:3000/articles/${id}`)
+    // 接続先は環境変数から取得したAPI_URLを使用
+    fetch(`${API_URL}/articles/${id}`)
       .then((response) => {
         // APIから取得できなかった場合
         if (!response.ok) {
@@ -142,9 +146,10 @@ export default function Editor() {
 
     // 編集時は記事ID付きのURL
     // 新規作成時は記事一覧のURL
+    // どちらも環境変数のAPI_URLを使用する
     const url = isEditMode
-      ? `http://localhost:3000/articles/${id}`
-      : "http://localhost:3000/articles";
+      ? `${API_URL}/articles/${id}`
+      : `${API_URL}/articles`;
 
     // 編集はPATCH、新規作成はPOST
     const method = isEditMode ? "PATCH" : "POST";

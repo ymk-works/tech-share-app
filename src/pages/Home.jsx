@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 // 検索処理をまとめたカスタムフック
 import useSearch from "../hooks/useSearch";
+// 環境変数からAPIの接続先URLを取得
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Home() {
 
@@ -24,7 +26,7 @@ export default function Home() {
   // ========================================
 
   useEffect(() => {
-    fetch("http://localhost:3000/articles")
+    fetch(`${API_URL}/articles`)
       .then((res) => {
         // HTTPエラーが発生した場合
         if (!res.ok) {
