@@ -1,16 +1,108 @@
-# React + Vite
+# TechShare ― 技術ナレッジ共有アプリ
+## 1. アプリの概要
+TechShareは、ITに関する技術情報や学習内容を記事として投稿し、共有するためのWebアプリケーションです。
+職業訓練のフロントエンド応用実習の課題として制作しました。
+フロントエンドとバックエンドの連携、データ管理、Webアプリケーションの公開まで、
+一連の開発工程を学ぶことを目的としています。
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 主な機能
+- 記事の一覧表示
+- 記事の詳細表示
+- 記事の新規作成
+- 記事の編集
+- 記事の削除
+- タイトル・本文からのリアルタイム検索
+- Markdownの表示とリアルタイムプレビュー
+- 簡易ログイン・ログアウトと投稿者による操作制限
 
-Currently, two official plugins are available:
+## 2. 使用技術と選定理由
+| 技術・ツール | 使用目的・選定理由 |
+| --- | --- |
+| React | 画面を部品単位で管理し、データの変化に応じて画面を更新する仕組みを学ぶため |
+| Vite | Reactの開発環境を構築し、開発時の動作確認や公開用のビルドを行うため |
+| JavaScript | 画面の操作やデータの取得・更新などの処理を実装するため |
+| Tailwind CSS | CSSのクラスを組み合わせて、効率的に画面のデザインを整えるため |
+| React Router | 記事一覧・詳細・作成・編集などの画面を切り替えるため |
+| React Markdown | Markdown形式の記事本文やプレビューを表示するため |
+| Node.js | 開発環境やバックエンドの実行環境として利用するため |
+| JSON Server | バックエンドの構築を簡略化し、APIを通じたデータの取得・作成・更新・削除を学ぶため |
+| Git・GitHub | ソースコードの変更履歴を管理し、公開サービスと連携するため |
+| Vercel | フロントエンドをインターネット上に公開するため |
+| Render | バックエンドのAPIサーバーを公開するため |
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 3. 工夫した点・難しかった点
+### フロントエンドとバックエンドの連携
+今回の学習では、個々のコードだけでなく、複数のファイルやツールがどのような役割を持ち、連携して一つのアプリケーションとして動作するのかを理解することに苦労しました。
+20年前に自分が仕事で携わっていたWeb制作とは全く異なり、複雑な進化をしていることに驚きました。
+自分は基礎がわかっているから簡単に進めるだろうという思いは打ち砕かれ、
+沢山のツールが出てきて、どれが何の役割なのかを把握するのに時間がかかってしまいました。
+ゆっくりとそれぞれの役割を整理し、ひとつひとつ動作確認を行いながら作業を進めました。
 
-## React Compiler
+### 教材と実際の開発環境の違いへの対応
+Tailwind CSSの導入では、教材の記述と実際に使用するバージョンの違いにより、そのままでは対応できない部分がありました。
+使用しているバージョンに合わせて設定を見直し、正常にデザインが反映されることを確認しました。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 検索処理の分離
+検索機能はカスタムフック（useSearch）に分離し、画面表示と検索処理を別々に管理できるようにしました。
+また、useMemoを使用し、記事データや検索条件が変わらない場合は不要な再計算を避ける構成にしました。
 
-## Expanding the ESLint configuration
+### 動作確認とデータの整合性
+記事の編集時には、作成日が更新されないよう、新規作成と編集でAPIに送信するデータを分けました。
+作成日が過去の日付である記事を使用し、編集後も作成日が維持されていることを確認しました。
+また、投稿者本人と他の投稿者の記事を使用し、編集・削除ボタンの表示が正しく制御されることも確認しました。
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 開発環境と公開環境の切り替え
+APIの接続先を環境変数で管理し、ローカル環境と公開環境で接続先を切り替えられるようにしました。
+
+### AIを活用した学習と検証
+開発中はAIを活用して、コードの意味や処理の仕組みを確認し、エラーの原因調査や解決方法の検討を行いました。
+公開後にはAIエージェントによる第三者視点での動作検証も実施し、考査の必須要件に沿って機能を確認しました。
+
+## 4. デモURL
+### フロントエンド
+https://tech-share-app-nu.vercel.app/
+### バックエンド（API）
+https://tech-share-api-o2s5.onrender.com
+### GitHubリポジトリ
+https://github.com/ymk-works/tech-share-app
+※ Renderの無料プランを使用しているため、初回アクセス時に記事の表示まで時間がかかる場合があります。
+※ 学習用アプリのため、ログインは簡易的な仕組みであり、実際のユーザー認証機能は実装していません。個人情報や機密情報は入力しないでください。
+
+## 5. ローカルでの起動手順
+### 必要な環境
+- Node.js
+- npm
+- Git
+### ① リポジトリを取得する
+```bash
+git clone https://github.com/ymk-works/tech-share-app.git
+cd tech-share-app
+```
+### ② 必要なパッケージをインストールする
+```bash
+npm install
+```
+### ③ 環境変数を設定する
+プロジェクトの直下に .env ファイルを作成し、以下の内容を記載します。
+```dotenv
+VITE_API_URL=http://localhost:3000
+```
+### ④ バックエンドを起動する
+ターミナルで以下を実行します。
+```bash
+npm run server
+```
+### ⑤ フロントエンドを起動する
+別のターミナルで以下を実行します。
+```bash
+npm run dev
+```
+### ⑥ ブラウザでアクセスする
+http://localhost:5173/
+※ Windows PowerShellでnpmコマンドが実行ポリシーにより制限される場合は、npmの代わりにnpm.cmdを使用してください。
+### 公開用のビルド
+```bash
+npm run build
+```
+## 要件定義メモ
+[TechShare 要件定義メモ](docs/requirements.md)
